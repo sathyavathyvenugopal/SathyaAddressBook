@@ -49,6 +49,7 @@ class QtAddressBookGUI : public QMainWindow, public AddressBookView
         QPushButton *newContactButton;
         QPushButton *editContactButton;
         QPushButton *deleteContactButton;
+        QPushButton *FindContactButton;
 
         AddressBookController& appController;
         AddressBookModel& dataSource;

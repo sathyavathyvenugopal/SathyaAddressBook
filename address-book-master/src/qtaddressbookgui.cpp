@@ -21,7 +21,7 @@ QtAddressBookGUI::QtAddressBookGUI(AddressBookController &controller, AddressBoo
     appController(controller), dataSource(model)
 {
     createWidgets();
-    setMinimumSize(640,480);
+    setMinimumSize(50,50);
 }
 
 QtAddressBookGUI::~QtAddressBookGUI()
@@ -40,15 +40,23 @@ void QtAddressBookGUI::createWidgets()
 
     list = new QtContactList(dataSource);
     list->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
-
+    setStyleSheet("Background-color:Grey");
     newContactButton = new QPushButton("New Contact");
+    newContactButton->setStyleSheet("Background-color:red;color:Yellow;font-size:10pt;font-weight:Bold;");
     editContactButton = new QPushButton("Edit");
+    editContactButton->setStyleSheet("Background-color:Blue;color:Yellow;font-size:10pt;font-weight:Bold;");
     deleteContactButton = new QPushButton("Delete");
+    deleteContactButton->setStyleSheet("Background-color:Yellow;color:Blue;font-size:10pt;font-weight:Bold;");
+
+     FindContactButton=new QPushButton("Find");
+
+
 
     QHBoxLayout *buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(newContactButton);
     buttonLayout->addWidget(editContactButton);
     buttonLayout->addWidget(deleteContactButton);
+    buttonLayout->addWidget(FindContactButton);
 
     QVBoxLayout *rightSideLayout = new QVBoxLayout();
     rightSideLayout->addWidget(detailView);
@@ -72,6 +80,11 @@ void QtAddressBookGUI::createWidgets()
 
     connect(editContactButton, SIGNAL(clicked()),
             this, SLOT(editContact()));
+
+
+
+    connect(FindContactButton, SIGNAL(clicked()),
+            this, SLOT(findContacts()));
 
     //tell the sub-widgets to refresh their data from
     //
